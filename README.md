@@ -13,6 +13,13 @@ git clone git@github.com:michalmytych/laravel-api-monorepo.git ./my-app
 cd my-app
 ```
 
+__Remove template git origin & add your own__
+```bash
+rm -rf .git
+git init .
+git remote add origin <your repo url>
+```
+
 __Build__
 
 ```bash
