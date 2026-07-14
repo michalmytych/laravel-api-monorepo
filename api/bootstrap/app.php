@@ -1,8 +1,15 @@
 <?php
 
+use App\Http\Middleware\SetLocaleFromAcceptLanguage;
+use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
+use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -14,14 +21,15 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware
             ->api([
-                \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-                \Illuminate\Routing\Middleware\SubstituteBindings::class,
+                SetLocaleFromAcceptLanguage::class,
+                EnsureFrontendRequestsAreStateful::class,
+                SubstituteBindings::class,
             ])
             ->appendToGroup('web', [
-                \Illuminate\Cookie\Middleware\EncryptCookies::class,
-                \Illuminate\Session\Middleware\StartSession::class,
-                \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-                \Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class,
+                EncryptCookies::class,
+                StartSession::class,
+                ShareErrorsFromSession::class,
+                PreventRequestForgery::class,
             ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

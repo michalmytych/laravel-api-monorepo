@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Support\Facades\App;
 use Tests\TestCase;
 
 class AuthRouteTest extends TestCase
@@ -13,12 +12,19 @@ class AuthRouteTest extends TestCase
         $this->getJson('/api/user')->assertNotFound();
     }
 
-    public function test_auth_messages_are_available_in_english_and_polish(): void
+    public function test_accept_language_selects_polish_validation_messages(): void
     {
-        App::setLocale('en');
-        $this->assertSame('These credentials do not match our records.', trans('auth.failed'));
+        $this->postJson('/api/auth/login', [], ['Accept-Language' => 'pl-PL,pl;q=0.9,en;q=0.8'])
+            ->assertUnprocessable()
+            ->assertJsonPath('errors.email.0', 'Pole adres e-mail jest wymagane.')
+            ->assertJsonPath('errors.password.0', 'Pole hasło jest wymagane.');
+    }
 
-        App::setLocale('pl');
-        $this->assertSame('Podane dane logowania są nieprawidłowe.', trans('auth.failed'));
+    public function test_accept_language_falls_back_to_english_validation_messages(): void
+    {
+        $this->postJson('/api/auth/login', [], ['Accept-Language' => 'de-DE,de;q=0.9'])
+            ->assertUnprocessable()
+            ->assertJsonPath('errors.email.0', 'The email field is required.')
+            ->assertJsonPath('errors.password.0', 'The password field is required.');
     }
 }
