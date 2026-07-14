@@ -1,5 +1,3 @@
-name: laravel-api-monorepo
-
 services:
     api:
         build:
