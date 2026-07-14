@@ -1,0 +1,51 @@
+name: laravel-api-monorepo
+
+services:
+    api:
+        build:
+            context: ./api
+            dockerfile: docker/frankenphp/Dockerfile
+        ports:
+            - '${APP_PORT:-8000}:80'
+        env_file:
+            - ./api/.env
+        volumes:
+            - './api:/app'
+            - 'api-vendor:/app/vendor'
+        depends_on:
+            mysql:
+                condition: service_healthy
+
+    client:
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        ports:
+            - '${VITE_PORT:-5173}:5173'
+        volumes:
+            - './client:/app'
+            - 'client-node-modules:/app/node_modules'
+        depends_on:
+            - api
+
+    mysql:
+        image: 'mysql:8.4'
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD:-root}'
+            MYSQL_DATABASE: '${DB_DATABASE:-laravel}'
+            MYSQL_USER: '${DB_USERNAME:-laravel}'
+            MYSQL_PASSWORD: '${DB_PASSWORD:-password}'
+        volumes:
+            - 'mysql-data:/var/lib/mysql'
+        healthcheck:
+            test: ['CMD-SHELL', 'mysqladmin ping -h localhost -p$$MYSQL_ROOT_PASSWORD']
+            interval: 5s
+            timeout: 5s
+            retries: 10
+
+volumes:
+    api-vendor:
+    client-node-modules:
+    mysql-data:

@@ -1,0 +1,522 @@
+{
+	"info": {
+		"_postman_id": "8cc59afd-bb60-442d-b79c-7b8a922f6bce",
+		"name": "laravel-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12013011"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "01. Get Sanctum CSRF Cookie",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// wyciągamy XSRF-TOKEN z cookie i zapisujemy jako zmienną środowiskową",
+									"const xsrf = pm.cookies.get('XSRF-TOKEN');",
+									"",
+									"if (xsrf) {",
+									"    pm.environment.set('X_XSRF_TOKEN', decodeURIComponent(xsrf));",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_API_URL}}/sanctum/csrf-cookie",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"sanctum",
+								"csrf-cookie"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example success response: 01. Get Sanctum CSRF Cookie",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_API_URL}}/sanctum/csrf-cookie",
+									"host": [
+										"{{BASE_API_URL}}"
+									],
+									"path": [
+										"sanctum",
+										"csrf-cookie"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 Dec 2025 10:39:43 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "XSRF-TOKEN=eyJpdiI6InJIY0hneHB6YXZ3VVU2VDY1MFZaUlE9PSIsInZhbHVlIjoiRzVDVDJ0YjZyREVoTmdTN0VEcWgrT3JrVkRvMnJCWWFQdksyeklPOG04OW5yZU1ZV0cvNTVYVTI1dUp1RjVlY2VzUC84ajBtR3Z4dE4wNVRFMHM1cnBwRDlOYVppd0NmS2Q3SW04c0ZSbmp1SHFWbTVrUVZOcnN2czBlRlpHT1AiLCJtYWMiOiI2NWZjOWIxMDgzNmM3ZTA3NjhjNTQyOWI5MzhlMTQ4N2JiMDVkNDcwMzYzMjA2ZThlYjYwNTAzZjI3NTAyMjlmIiwidGFnIjoiIn0%3D; expires=Fri, 05 Dec 2025 12:39:43 GMT; Max-Age=7200; path=/; domain=localhost; samesite=lax"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "laravel-session=eyJpdiI6IklCSlNiS1NwTXpzdi9sNDZhRlM0TFE9PSIsInZhbHVlIjoiN3JRVUJzdEp4aVZSOHRTNVZYck9EZW1DM0crenBiWnNZS090MERJZUUvV0UvOGI3OXNsbFQzOUdxUE85ZXJoT0Z3ajRWc2o0YnJLdnRQNzVVck05TzBBSE8ycERUTGNVdFN4S3R6WGZ6VnR3VHZjbU5jSlJPaktYRkU2QUd3WjMiLCJtYWMiOiI4Mjk4Mzc5ZmY1MTM0ZDY4YWEzYTQ1NjIzN2ZiZGI1ZDAxNmRmMDVkZTI0NzQzOTJhNjZkODUzYmU5ZDFjNWMzIiwidGFnIjoiIn0%3D; expires=Fri, 05 Dec 2025 12:39:43 GMT; Max-Age=7200; path=/; domain=localhost; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "02. Register User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true,
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{X_XSRF_TOKEN}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test user\",\n    \"email\": \"test.user@test.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/api/auth/register",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example success response: 02. Register User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X_XSRF_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Test user\",\n    \"email\": \"test@test.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_API_URL}}/api/auth/register",
+									"host": [
+										"{{BASE_API_URL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 Dec 2025 10:57:10 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "XSRF-TOKEN=eyJpdiI6Inl4RENpYldwb0JhZ2VkUzUrSUVialE9PSIsInZhbHVlIjoiMHIyQUN1Y0tzRVNUOC9HcFpSbUFOM2VLVFZlV1ZJR3VrQXg2Lzd3UDJTRlphKzNzRE5KSW9kNGd1Y1lUaEg0dCtrM2d2VUl6S2lmTmp5UzBiR2lHYXhvdnJneDQwNldHZk1aVkZDSzRUWXdsQVBSQ0tMc0sva0c5V1hrYVNUMlEiLCJtYWMiOiJmYzU2MzljYTUxMWM0ZGZiNjRiOGI2YmU4YjRiMDI1MjlhNzVjODg3NGI0ZDMzMzFhMTdkMDIyNzZiM2I2YzNlIiwidGFnIjoiIn0%3D; expires=Fri, 05 Dec 2025 12:57:10 GMT; Max-Age=7200; path=/; domain=localhost; samesite=lax"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "laravel-session=eyJpdiI6ImJtZXdLWHJ5NGZaM3pnTVRJT1pNVXc9PSIsInZhbHVlIjoib2txcC9RVU1YdVBnM3pUdEdUMzdWTFlBTWNnU3E0NlhuRnRJM0tSWDdzeUVYOG4wUDh4MEZpbnNJN0hyVS9abENiK1RjSXMzNkUwblpjajFId0lUdUprSG1Uem9sOXVJaDJsWlZRbVF4Q0s5eFpvUVg1a1hPcnhDVlptYWV6ajYiLCJtYWMiOiIyMTZiNWRmMDQxY2EwYWE2OTQ3OGZmNWE0NjE4NzkxZDM2ZDQ3ZTNkMTVhY2VlZDhiYjFkOWZhOTdjZTUzMGIzIiwidGFnIjoiIn0%3D; expires=Fri, 05 Dec 2025 12:57:10 GMT; Max-Age=7200; path=/; domain=localhost; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				},
+				{
+					"name": "03. Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{X_XSRF_TOKEN}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test.user@test.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/api/auth/login",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example success response: 02. Register User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X_XSRF_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Test user\",\n    \"email\": \"test@test.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_API_URL}}/api/auth/register",
+									"host": [
+										"{{BASE_API_URL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.5.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 05 Dec 2025 10:57:10 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "XSRF-TOKEN=eyJpdiI6Inl4RENpYldwb0JhZ2VkUzUrSUVialE9PSIsInZhbHVlIjoiMHIyQUN1Y0tzRVNUOC9HcFpSbUFOM2VLVFZlV1ZJR3VrQXg2Lzd3UDJTRlphKzNzRE5KSW9kNGd1Y1lUaEg0dCtrM2d2VUl6S2lmTmp5UzBiR2lHYXhvdnJneDQwNldHZk1aVkZDSzRUWXdsQVBSQ0tMc0sva0c5V1hrYVNUMlEiLCJtYWMiOiJmYzU2MzljYTUxMWM0ZGZiNjRiOGI2YmU4YjRiMDI1MjlhNzVjODg3NGI0ZDMzMzFhMTdkMDIyNzZiM2I2YzNlIiwidGFnIjoiIn0%3D; expires=Fri, 05 Dec 2025 12:57:10 GMT; Max-Age=7200; path=/; domain=localhost; samesite=lax"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "laravel-session=eyJpdiI6ImJtZXdLWHJ5NGZaM3pnTVRJT1pNVXc9PSIsInZhbHVlIjoib2txcC9RVU1YdVBnM3pUdEdUMzdWTFlBTWNnU3E0NlhuRnRJM0tSWDdzeUVYOG4wUDh4MEZpbnNJN0hyVS9abENiK1RjSXMzNkUwblpjajFId0lUdUprSG1Uem9sOXVJaDJsWlZRbVF4Q0s5eFpvUVg1a1hPcnhDVlptYWV6ajYiLCJtYWMiOiIyMTZiNWRmMDQxY2EwYWE2OTQ3OGZmNWE0NjE4NzkxZDM2ZDQ3ZTNkMTVhY2VlZDhiYjFkOWZhOTdjZTUzMGIzIiwidGFnIjoiIn0%3D; expires=Fri, 05 Dec 2025 12:57:10 GMT; Max-Age=7200; path=/; domain=localhost; httponly; samesite=lax"
+								}
+							],
+							"cookie": [],
+							"body": "\"\""
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"// jeśli nie mamy tokenu, to dociągnij go z /sanctum/csrf-cookie",
+					"if (!pm.environment.get('X_XSRF_TOKEN')) {",
+					"    pm.sendRequest({",
+					"        url: pm.environment.get('API_BASE_URL') + '/sanctum/csrf-cookie',",
+					"        method: 'GET'",
+					"    }, function (err, res) {",
+					"        if (err) {",
+					"            console.log('CSRF error:', err);",
+					"            return;",
+					"        }",
+					"",
+					"        const raw = res.cookies.get('XSRF-TOKEN');",
+					"        if (raw) {",
+					"            pm.environment.set('X_XSRF_TOKEN', decodeURIComponent(raw));",
+					"        }",
+					"    });",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_API_URL",
+			"value": ""
+		},
+		{
+			"key": "X_XSRF_TOKEN",
+			"value": ""
+		}
+	]
+}
