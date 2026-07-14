@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Responses\Auth\LoginResponse;
+use App\Http\Responses\Auth\LogoutResponse;
+use App\Http\Responses\Auth\RegisterResponse;
+use App\Http\Responses\Auth\UserResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Attributes\Controllers\Middleware;
@@ -14,7 +18,7 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request): RegisterResponse
     {
         $data = $request->validated();
 
@@ -27,13 +31,10 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return response()->json([
-            'message' => trans('auth.registered'),
-            'user' => $user,
-        ], 201);
+        return new RegisterResponse($user);
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): LoginResponse
     {
         $credentials = $request->validated();
 
@@ -45,27 +46,28 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return response()->json([
-            'message' => trans('auth.logged_in'),
-            'user' => $request->user(),
-        ]);
+        /** @var User $user */
+        $user = $request->user();
+
+        return new LoginResponse($user);
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request): LogoutResponse
     {
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return response()->json([
-            'message' => trans('auth.logged_out'),
-        ]);
+        return new LogoutResponse;
     }
 
     #[Middleware('auth:sanctum')]
-    public function user(Request $request)
+    public function user(Request $request): UserResponse
     {
-        return response()->json($request->user());
+        /** @var User $user */
+        $user = $request->user();
+
+        return new UserResponse($user);
     }
 }
