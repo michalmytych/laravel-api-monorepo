@@ -10,6 +10,7 @@ This prevent's repeating `laravel-api-monorepo` project name by docker-compose.
 
 ```bash
 git clone git@github.com:michalmytych/laravel-api-monorepo.git ./my-app
+cd my-app
 ```
 
 __Build__
