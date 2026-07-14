@@ -23,9 +23,10 @@ git remote add origin <your repo url>
 __Build__
 
 ```bash
-cp api/.env.example api/.env
-docker compose up --build -d
-docker compose exec api php artisan key:generate
+# You can copy & paste it to terminal as one command
+cp api/.env.example api/.env && \
+docker compose up --build -d && \
+docker compose exec api php artisan key:generate && \
 docker compose exec api php artisan migrate
 ```
 
