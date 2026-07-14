@@ -27,7 +27,8 @@ __Build__
 cp api/.env.example api/.env && \
 docker compose up --build -d && \
 docker compose exec api php artisan key:generate && \
-docker compose exec api php artisan migrate
+docker compose exec api php artisan migrate && \
+docker compose exec api php artisan optimize:clear
 ```
 
 ## Features
