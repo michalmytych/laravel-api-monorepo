@@ -21,7 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 \Illuminate\Cookie\Middleware\EncryptCookies::class,
                 \Illuminate\Session\Middleware\StartSession::class,
                 \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-                \Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class,
+                \Illuminate\Foundation\Http\Middleware\PreventRequestForgery::class,
             ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
