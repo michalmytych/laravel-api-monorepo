@@ -36,7 +36,7 @@ docker compose exec api php artisan optimize:clear
 ### Tech stack
 * Docker Compose with FrankenPHP, MySQL and a Node/Vite client.
 * Sanctum Auth with basic Controllers/Api/Auth/AuthController which handles registration, login, logout and user fetch.
-* Monorepo structure withour blocking optional separation if preferred.
+* Monorepo structure without blocking optional separation if preferred.
 
 ### Approach
 
