@@ -1,16 +1,16 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useLocale } from "../i18n/locale.js";
+import { useLocale } from "../i18n/locale";
 import { fetchUser, logoutUser } from "../store/authSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 
 export default function Home() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { t } = useLocale();
-  const { user, status } = useSelector((state) => state.auth);
+  const { user, status } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchUser());
+    void dispatch(fetchUser());
   }, [dispatch]);
 
   if (status === "loading" && !user) {
@@ -23,7 +23,7 @@ export default function Home() {
       {user ? (
         <>
           <p>{t("home.signedInAs")}: {user.name} ({user.email})</p>
-          <button type="button" onClick={() => dispatch(logoutUser())}>{t("home.logout")}</button>
+          <button type="button" onClick={() => void dispatch(logoutUser())}>{t("home.logout")}</button>
         </>
       ) : (
         <>

@@ -1,8 +1,8 @@
-import { Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx";
-import Register from "./pages/Register.jsx";
-import { useLocale } from "./i18n/locale.js";
+import { Link, Route, Routes } from "react-router-dom";
+import { useLocale, type Locale } from "./i18n/locale";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 export default function App() {
   const { locale, setLocale, t } = useLocale();
@@ -15,16 +15,14 @@ export default function App() {
           <Link to="/login"> / {t("nav.login")}</Link>
           <Link to="/register"> / {t("nav.register")}</Link>
         </nav>
-
         <label>
           <span>{t("locale.label")}</span>
-          <select value={locale} onChange={(event) => setLocale(event.target.value)}>
+          <select value={locale} onChange={(event) => setLocale(event.target.value as Locale)}>
             <option value="en">EN</option>
             <option value="pl">PL</option>
           </select>
         </label>
       </header>
-
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
