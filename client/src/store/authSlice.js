@@ -25,7 +25,7 @@ export const registerUser = createAsyncThunk(
       if (error.response?.data) {
         return rejectWithValue(error.response.data);
       }
-      return rejectWithValue({ message: "Unknown error" });
+      return rejectWithValue({ message: null });
     }
   }
 );
@@ -45,7 +45,7 @@ export const loginUser = createAsyncThunk(
       if (error.response?.data) {
         return rejectWithValue(error.response.data);
       }
-      return rejectWithValue({ message: "Unknown error" });
+      return rejectWithValue({ message: null });
     }
   }
 );
@@ -62,7 +62,7 @@ export const logoutUser = createAsyncThunk(
       if (error.response?.data) {
         return rejectWithValue(error.response.data);
       }
-      return rejectWithValue({ message: "Unknown error" });
+      return rejectWithValue({ message: null });
     }
   }
 );
@@ -72,13 +72,13 @@ export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await api.get("/api/user");
+      const response = await api.get("/api/auth/user");
       return response.data;
     } catch (error) {
       if (error.response?.status === 401) {
         return rejectWithValue(null);
       }
-      return rejectWithValue({ message: "Unknown error" });
+      return rejectWithValue({ message: null });
     }
   }
 );
@@ -105,7 +105,7 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.payload || { message: "Register failed" };
+        state.error = action.payload || { message: null };
       });
 
     // LOGIN
@@ -120,7 +120,7 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.payload || { message: "Login failed" };
+        state.error = action.payload || { message: null };
       });
 
     // LOGOUT

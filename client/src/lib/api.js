@@ -27,6 +27,7 @@ api.interceptors.request.use((config) => {
 
   config.headers["X-Requested-With"] = "XMLHttpRequest";
   config.headers["Accept"] = "application/json";
+  config.headers["Accept-Language"] = localStorage.getItem("locale") || "en";
 
   return config;
 });

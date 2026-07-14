@@ -4,13 +4,17 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./store/store";
 import App from "./App.jsx";
+import { LocaleProvider } from "./i18n/LocaleContext.jsx";
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <LocaleProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </LocaleProvider>
     </Provider>
   </React.StrictMode>
 );
