@@ -1,4 +1,4 @@
-# Simple Laravel Sanctum API Starter prepared for SPA Applications.
+# Simple Laravel Sanctum API + React Starter monorepo
 
 Kept simple.
 
