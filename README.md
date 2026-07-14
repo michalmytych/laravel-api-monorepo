@@ -5,12 +5,15 @@ Kept simple.
 ### Setup
 
 __Clone with your preferred directory name__
+
 This prevent's repeating `laravel-api-monorepo` project name by docker-compose.
+
 ```bash
 git clone git@github.com:michalmytych/laravel-api-monorepo.git ./my-app
 ```
 
 __Build__
+
 ```bash
 cp api/.env.example api/.env
 docker compose up --build -d
